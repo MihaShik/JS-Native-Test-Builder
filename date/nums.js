@@ -1,7 +1,7 @@
 export default {
     "5" : {
     title : "5",
-    id : 'number 5',
+    id : '5',
     list : [
         {
             number: 5,
@@ -10,7 +10,7 @@ export default {
     ]},
         "15" : {
             title : "15",
-            id : 'number 15',
+            id : '15',
             list : [
                 {
                     number: 15,
@@ -20,7 +20,7 @@ export default {
              },
             "30" : {
                 title : "30",
-                id : 'number 30',
+                id : '30',
                 list : [
                     {
                         number: 30,
@@ -29,12 +29,12 @@ export default {
                 ]},
                 "All" : {
                     title : "All",
-                    id : 'number "All"',
+                    id : '"All"',
                     list : [
                         {
                             number: "All",
                         
-                        },
+                        }
                     ]}
 
 }

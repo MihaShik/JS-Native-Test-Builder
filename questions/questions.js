@@ -20,6 +20,10 @@ const EuropeanСountries = {
         {
             question: "Сталица Португалии",
             answer: "Лиссабон" 
+        },
+        {
+            question: "Сталица Булорусии",
+            answer: "Минск" 
         }
     ]
 }
@@ -30,7 +34,8 @@ const CountriesOfSouthAmerica = {
     number : 4,
     difficultyLevel : 2,
     id : 'CountriesOfSouthAmerica',
-    list : [{
+    list : [
+        {
             question: "Сталица Бразилии",
             answer: "Бразилиа"
         },
@@ -45,6 +50,10 @@ const CountriesOfSouthAmerica = {
         {
             question: "Сталица Кубы",
             answer: "Гавана" 
+        },
+        {
+            question: "Венесуэлы",
+            answer: "Каракас" 
         }
     ]
 }

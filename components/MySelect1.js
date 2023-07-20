@@ -37,15 +37,16 @@
 
         const optionsItem = document.createElement('div');
         optionsItem.className = `custom-select__options`; 
+
         optionsItem.dataset.type = `${typeOfSelect}`;
+        optionsItem.dataset.value = `${obj[element].id}`;
+        optionsItem.name = `${id}`;
+        optionsItem.id = `${obj[element].id}`;
+
         optionsItem.innerHTML =
-            `<span class = "custom-select__options-current"
-            data-type = '${typeOfSelect}'
-            data-value ='${obj[element].id}'
-            name ='${id}'
-            id='${obj[element].id}'>
+            `<p class = "custom-select__options-current">
                 ${obj[element].title}
-            </span>`;
+            </p>`;
 
         selectOptinsContaner.append(optionsItem);
     });

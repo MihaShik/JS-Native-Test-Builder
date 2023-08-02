@@ -12,6 +12,6 @@ export default function Header (styleModifier){
 
     header.append(MyButton('Начать','start'));
     header.append(MySelect('Выберите тему', 'checkbox', questions));
-    header.append(MySelect('число', 'radio', Numbers, 'smoll-size'));
+    header.append(MySelect('5', 'radio', Numbers, 'smoll-size'));
     return header;
  }

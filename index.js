@@ -5,7 +5,7 @@ import MyButton from "./components/UI/MyButton.js";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 import Main from "./components/main.js";
-
+import PrograssLine from "./components/PrograssLine.js"
 
 
 
@@ -22,6 +22,7 @@ const App = document.createElement('div');
 App.className = 'App'
 
 App.append(Header());
+App.append(PrograssLine())
 App.append(Main());
 App.append(Footer());
 root.append(App)
@@ -30,12 +31,15 @@ root.append(App)
 const actionForSelector = {
     radio: (num, event) => {
         const optionsCont =  event.target.closest('.custom-select__options-contaner');
+        const selectorHeader = optionsCont.parentElement.previousElementSibling
+        console.log(selectorHeader)
         const optionsChildren =  optionsCont.children;
         for (const el of optionsChildren){
             el.classList.remove('aclive')
         }
         const options =  event.target.closest('.custom-select__options');
         options.classList.add('aclive');
+        selectorHeader.innerHTML = num;
         NUMBER_OF_QUESTIONS = num
     },
     checkbox: (num, event) => {
@@ -101,7 +105,7 @@ const uploadCarent = () => {
     const topicalQuestion = TOPICAL_QUESTIONS.splice(0, 1)
     CURRENT_QUESTION = [...topicalQuestion]
         
-    console.log(TOPICAL_QUESTIONS)
+  
 }
 
 const skipQuestion = () => {
@@ -113,7 +117,7 @@ const skipQuestion = () => {
     CURRENT_QUESTION.splice(0, 1)
     uploadCarent()
 
-    console.log(TOPICAL_QUESTIONS)
+    
  }
 
 // создает обект с ответом пользователя и статусом вернно/неверно
@@ -125,7 +129,7 @@ const skipQuestion = () => {
     currentQuestion.status = true;
  } else {currentQuestion.status = false;}
     RESULT.push(currentQuestion)
-    console.log(RESULT)
+    
  }
 
 const createAndDisplayTestResults = (resultArr) => {
@@ -161,7 +165,7 @@ const createAndDisplayTestResults = (resultArr) => {
 
     main.prepend(
     `Правильных ответов: ${correctAnswer}
-    Неправильных ответов: ${wrongAnswer}`
+     Неправильных ответов: ${wrongAnswer}`
     )
 }
 
@@ -171,7 +175,34 @@ const clearInput = () => {
    
 }
 
+// блок прогресса
 
+const createProgresLine = (TOPICAL_QUESTIONS) => {
+    const length = TOPICAL_QUESTIONS.length;
+    const prograssLine = document.querySelector('.prograss-line')
+
+    for (let i =0; i<=length; i++){
+       const div = document.createElement('div');
+       div.className = 'prograss-line-sector';
+       div.classList.add('grey-line');
+       prograssLine.append(div);
+    }
+    setTimeout(()=>{
+        
+        prograssLine.firstChild.classList.add('red-line');
+        prograssLine.firstChild.classList.remove('grey-line');
+    },200)
+    
+}
+
+const addRedLine = () => {
+    const greyLine = document.querySelector('.grey-line')
+
+    greyLine.classList.add('red-line');
+    greyLine.classList.remove('grey-line');
+}
+
+// Обработчик событий
  document.addEventListener('click', (event) => {
   
     if(event.target.closest('.custom-select__options')){
@@ -180,23 +211,23 @@ const clearInput = () => {
         let type = options.dataset.type;
         if (!type){return}
             actionForSelector[type](options.dataset.value, event)
-            
+            if (type === 'checkbox'){
             const btnStart = document.querySelector('.my-batton__start');
             btnStart.removeAttribute('disabled')
-
+        }
            
     }
 
     if(event.target.closest('.custom-select__header')){
        const selectorHeader =  event.target.closest('.custom-select__header');
-       console.log(selectorHeader)
+      
        const selectorBody = selectorHeader.nextElementSibling
        selectorBody.hidden = !selectorBody.hidden
     }
 
     if(!event.target.closest('.custom-select')){
       const selectorBody = document.querySelectorAll('.custom-select__body')
-      console.log(selectorBody)
+     
       for(const el of selectorBody){ el.hidden = true}
     }
 
@@ -212,9 +243,11 @@ const clearInput = () => {
         const btnStart = event.target.closest('.my-batton__start')
         btnStart.setAttribute('disabled', 'disabled')
 
+        createProgresLine(TOPICAL_QUESTIONS)
+
 // ------------------------Поменять
         const selectHeaders = document.querySelectorAll('.custom-select'); 
-        console.log(selectHeaders)
+        
         for (const el of selectHeaders){
             el.setAttribute('disabled', 'disabled')
         }
@@ -237,7 +270,9 @@ const clearInput = () => {
         countTheAnswer(CURRENT_QUESTION, inputValue)
         uploadCarent()
         clearInput()
+        addRedLine()
     }
+
     if (event.target.closest('.my-batton__skip')){
         skipQuestion()
         clearInput()
@@ -255,9 +290,10 @@ document.addEventListener('keydown', (event) => {
 
         if(inputValue === ''){return}
 
-        console.log(inputValue)
+       
         countTheAnswer(CURRENT_QUESTION, inputValue)
         uploadCarent()
         clearInput()
+        addRedLine()
     }
 })

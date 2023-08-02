@@ -236,3 +236,32 @@ border-radius: 8px;
   margin-top: 10px;
   text-align: center;
 }
+
+
+.prograss-line{
+  display: flex;
+  width: 1000px;
+  height: 5px;
+  background-color: #262626;
+}
+
+.prograss-line-sector {
+  background-color: #6a6a6a;
+  margin-left: 2px;
+  margin-right: 2px;
+  height: 5px;
+  width: 100%;
+  transition:all 0.5s linear;
+  
+  /* display: inline-block; */
+}
+
+.grey-line {
+  background-color: #6a6a6a;
+}
+
+.red-line {
+  background-color: #9e0202;
+  opacity: 1;
+  transition:all 0.5s linear;
+}

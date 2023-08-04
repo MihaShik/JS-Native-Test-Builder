@@ -30,15 +30,17 @@ root.append(App)
 // функции селектора
 const actionForSelector = {
     radio: (num, event) => {
+        console.log(num)
         const optionsCont =  event.target.closest('.custom-select__options-contaner');
         const selectorHeader = optionsCont.parentElement.previousElementSibling
-        console.log(selectorHeader)
+        
         const optionsChildren =  optionsCont.children;
         for (const el of optionsChildren){
             el.classList.remove('aclive')
         }
         const options =  event.target.closest('.custom-select__options');
         options.classList.add('aclive');
+        
         selectorHeader.innerHTML = num;
         NUMBER_OF_QUESTIONS = num
     },
@@ -67,8 +69,10 @@ const createСollectionOfSelectedQuestions = (allQuestions, SelectedQuestions) =
 }
 
 // преобразует коллекцию с учетом количества вопросов и рандомной выборки
-const getRandomQuestion = (arr, num) => {
+const getRandomQuestion = (arr, numOrAll) => {
 
+   const num = (numOrAll === 'All')? arr.length: numOrAll;
+ 
     if (arr.length === 0){ return }
 
     const newArr = [...arr];
@@ -209,11 +213,15 @@ const addRedLine = () => {
         
         const options =  event.target.closest('.custom-select__options');
         let type = options.dataset.type;
-        if (!type){return}
-            actionForSelector[type](options.dataset.value, event)
-            if (type === 'checkbox'){
+
+        if (!type){return};
+
+        actionForSelector[type](options.dataset.value, event);
+        
+
+        if (type === 'checkbox'){
             const btnStart = document.querySelector('.my-batton__start');
-            btnStart.removeAttribute('disabled')
+            btnStart.removeAttribute('disabled');
         }
            
     }
@@ -221,14 +229,14 @@ const addRedLine = () => {
     if(event.target.closest('.custom-select__header')){
        const selectorHeader =  event.target.closest('.custom-select__header');
       
-       const selectorBody = selectorHeader.nextElementSibling
-       selectorBody.hidden = !selectorBody.hidden
+       const selectorBody = selectorHeader.nextElementSibling;
+       selectorBody.hidden = !selectorBody.hidden;
     }
 
     if(!event.target.closest('.custom-select')){
-      const selectorBody = document.querySelectorAll('.custom-select__body')
+      const selectorBody = document.querySelectorAll('.custom-select__body');
      
-      for(const el of selectorBody){ el.hidden = true}
+      for(const el of selectorBody){ el.hidden = true};
     }
 
     if (event.target.closest('.my-batton__start')) {
@@ -246,10 +254,12 @@ const addRedLine = () => {
         createProgresLine(TOPICAL_QUESTIONS)
 
 // ------------------------Поменять
-        const selectHeaders = document.querySelectorAll('.custom-select'); 
+        const selectHeaders = document.querySelectorAll('.custom-select__header'); 
         
         for (const el of selectHeaders){
-            el.setAttribute('disabled', 'disabled')
+            el.classList.remove('custom-select__header')
+            el.classList.add('custom-select__header_disabled')
+
         }
 // ------------------------Поменять     
 
@@ -265,7 +275,13 @@ const addRedLine = () => {
         const input = document.querySelector(`.my-input`)
         const inputValue = input.value
 
-        if(inputValue === ''){return}
+        if(inputValue === ''){
+            input.style.backgroundColor = '#fbb3b3';
+            setTimeout(()=>{
+                input.style = '';
+            },300)
+
+            return}
 
         countTheAnswer(CURRENT_QUESTION, inputValue)
         uploadCarent()

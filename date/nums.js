@@ -29,7 +29,7 @@ export default {
                 ]},
                 "All" : {
                     title : "All",
-                    id : '"All"',
+                    id : 'All',
                     list : [
                         {
                             number: "All",

@@ -44,32 +44,44 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 
 /*----------------------------*/
 
+body{
+  background-image: url('./components/img/664.svg');
+  background-color: rgb(72, 72, 72);
+
+}
+
 .root{
   width: 100%;
   height: auto;
 }
 
 .App {
+  
   width: 1000px;
-  margin: 20px auto;
-
+  margin: 50px auto;
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 0.97;
 }
+
 .header {
+  border-radius:8px 8px 0 0 ;
   width: 1000px;
   min-height: 50px;
-  background-color: black;
+  background-color: rgb(51, 51, 51);
   display: flex;
   justify-content: space-between;
 }
 .main {
+  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 1000px;
   min-height: 600px;
   background-color: rgb(36, 35, 35);
+  font-weight:300;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
 .main__content{
   
   font-size: 20px;
@@ -78,19 +90,22 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 }
 
 .main__content__result {
-  padding-top: 75px;
+  padding-top: 55px;
   width: 1000px;
   height: 200px;
   border-top: 1px solid slategray ;
   text-align: center;
   color: black;
+  line-height: 1.5;
+  
 }
 
 .footer
 {
   width: 1000px;
   min-height: 50px;
-  background-color: black;
+  background-color: rgb(51, 51, 51);
+  border-radius: 0 0 8px 8px;
 }
 
 
@@ -115,6 +130,11 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
   border-radius: 8px;
 }
 
+
+.custom-select__header_disabled{
+  opacity: 0;
+  transition: all 200ms linear;
+}
 
 .custom-select__header:hover {
   background-color: #f2f2f2;
@@ -164,6 +184,8 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
   background-color: #cccccc;
   display: flex;
   align-items: baseline;
+  display: flex;
+  justify-content: center;
 }
 
 .custom-select__options.aclive{ 
@@ -206,12 +228,17 @@ width: 200px;
 height: 40px;
 margin: 15px;
 border-radius: 8px;
+transition: all 200ms linear;
 }
 
 .my-batton:hover{
   background-color: aliceblue;
   }
   
+.my-batton:disabled{
+  opacity: 0;
+  transition: all 200ms linear;
+  }
 
 .footer {
   display: flex;
@@ -235,8 +262,14 @@ border-radius: 8px;
   margin: 0 auto;
   margin-top: 10px;
   text-align: center;
+  transition: all 200ms linear;
 }
 
+.my-input:disabled{
+  /* background-color: rgb(51, 51, 51); */
+  opacity: 0;
+  transition: all 200ms linear;
+}
 
 .prograss-line{
   display: flex;
@@ -264,4 +297,10 @@ border-radius: 8px;
   background-color: #9e0202;
   opacity: 1;
   transition:all 0.5s linear;
+}
+
+.testResults {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
 }

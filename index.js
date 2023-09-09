@@ -103,6 +103,16 @@ const uploadCarent = () => {
     if (TOPICAL_QUESTIONS.length === 0) {
         createAndDisplayTestResults(RESULT)
         console.log('Вопросы кончились')
+
+        const btnOk = document.querySelector('.my-batton__ok'); 
+        const btnSkip = document.querySelector('.my-batton__skip');
+        btnOk.setAttribute("disabled", "disabled");
+        btnSkip.setAttribute("disabled", "disabled");
+        
+        const header = document.querySelector('.header');
+        header.append(MyButton('Повторить','repeat'));
+
+
         return;
     }
     uploadMain();
@@ -150,11 +160,11 @@ const createAndDisplayTestResults = (resultArr) => {
         let color ='';
         if(el.status) {
             correctAnswer += 1;
-            color = '#a6ff8b'
+            color = 'rgb(232 255 225)'
         }
         else { 
             wrongAnswer += 1;
-            color ='#ff8b8b'
+            color ='rgb(255 225 225)'
         }
         
         resultItem.innerHTML =
@@ -167,9 +177,11 @@ const createAndDisplayTestResults = (resultArr) => {
         main.append(resultItem)
     }
 
-    main.prepend(
-    `Правильных ответов: ${correctAnswer}
-     Неправильных ответов: ${wrongAnswer}`
+    const testResults = document.createElement('div')
+    testResults.className = 'testResults'
+    testResults.innerText = 
+        `Правильных ответов: ${correctAnswer}; Неправильных ответов: ${wrongAnswer}`;
+    main.prepend(testResults
     )
 }
 
@@ -261,13 +273,13 @@ const addRedLine = () => {
             el.classList.add('custom-select__header_disabled')
 
         }
-// ------------------------Поменять     
-
+// ------------------------Поменять   какая хуйня! на заметку
+        const myInput = document.querySelector('.my-input'); 
         const btnOk = document.querySelector('.my-batton__ok'); 
         const btnSkip = document.querySelector('.my-batton__skip');
         btnOk.removeAttribute('disabled')
         btnSkip.removeAttribute('disabled')
-        
+        myInput.removeAttribute('disabled')
 
     }
 
@@ -294,7 +306,10 @@ const addRedLine = () => {
         clearInput()
         
     }
-    
+
+     if (event.target.closest('.my-batton__repeat')){
+        location.reload()
+    }
 
 })
 

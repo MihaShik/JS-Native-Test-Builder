@@ -10,9 +10,9 @@ export default function Footer (styleModifier){
    
 
 
-    footerButtonContaner.append(MyButton('Ответить','ok'));
-    footerButtonContaner.append(MyButton('Пропустить','skip'));
-    footerContaner.append(MyInput("Ваш ответ"));
+    footerButtonContaner.append(MyButton('Ответить','ok','disabled'));
+    footerButtonContaner.append(MyButton('Пропустить','skip','disabled'));
+    footerContaner.append(MyInput("Ваш ответ",'disabled'));
     footerContaner.append(footerButtonContaner);
     
     footer.append(footerContaner);

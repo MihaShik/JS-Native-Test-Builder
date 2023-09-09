@@ -10,7 +10,7 @@ export default function Header (styleModifier){
     header.className = `header`
     if (styleModifier) footer.className.add(`header_${styleModifier}`)
 
-    header.append(MyButton('Начать','start'));
+    header.append(MyButton('Начать','start','disabled'));
     header.append(MySelect('Выберите тему', 'checkbox', questions));
     header.append(MySelect('5', 'radio', Numbers, 'smoll-size'));
     return header;

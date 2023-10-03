@@ -106,8 +106,10 @@ const uploadCarent = () => {
 
         const btnOk = document.querySelector('.my-batton__ok'); 
         const btnSkip = document.querySelector('.my-batton__skip');
+        const myInput = document.querySelector('.my-input'); 
         btnOk.setAttribute("disabled", "disabled");
         btnSkip.setAttribute("disabled", "disabled");
+        myInput.setAttribute("disabled", "disabled");
         
         const header = document.querySelector('.header');
         header.append(MyButton('Повторить','repeat'));
@@ -130,18 +132,35 @@ const skipQuestion = () => {
     TOPICAL_QUESTIONS.push(...CURRENT_QUESTION)
     CURRENT_QUESTION.splice(0, 1)
     uploadCarent()
-
-    
  }
+
+
+const compareAnswerAndValue = (answer, userResponse) => {
+    let counter = 0;
+    const str1 = answer.toLowerCase().trim(); 
+    const str2 = userResponse.toLowerCase().trim();
+    
+    for (let i = 0; i < str1.length; i++){
+        
+        if(str1[i] !== str2[i]){
+            counter ++;
+        }
+    }
+    return counter <= 2? true: false;
+}
 
 // создает обект с ответом пользователя и статусом вернно/неверно
 
  const countTheAnswer = ([currentQuestion], userResponse) => {
+
     const {question, answer} = currentQuestion
     currentQuestion.userResponse = userResponse
- if (answer.toLowerCase().trim() === userResponse.toLowerCase().trim()){
+
+    if(compareAnswerAndValue(answer, userResponse)){
     currentQuestion.status = true;
- } else {currentQuestion.status = false;}
+    }else {
+    currentQuestion.status = false;
+    }   
     RESULT.push(currentQuestion)
     
  }

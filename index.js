@@ -6,7 +6,7 @@ import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 import Main from "./components/main.js";
 import PrograssLine from "./components/PrograssLine.js"
-
+console.log(questions)
 
 
 let NUMBER_OF_QUESTIONS = 5;
